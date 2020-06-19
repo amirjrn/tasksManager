@@ -1,0 +1,8 @@
+.log
+*.js
+node_modules
+.env
+.history
+coverage
+.nyc_output
+.vscode
