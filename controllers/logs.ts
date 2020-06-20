@@ -9,3 +9,12 @@ export function entrance() {
     await logsUseCases.addLog({ userId: req.body.username, date, action })
   }
 }
+export function exit() {
+  return async function (req: Request, res: Response, next) {
+    console.log('exit')
+    const date = Date.now()
+    const action = 'خروج'
+    await logsUseCases.addLog({ userId: req.body.username, date, action })
+    res.status().json({ message: 'با موفقیت خارج شدید' })
+  }
+}

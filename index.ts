@@ -6,7 +6,7 @@ import passportConfig from './config/passport'
 import loginController from './controllers/login'
 import registerContorller from './controllers/register'
 import tasksContorller from './controllers/tasks'
-import { entrance } from './controllers/logs'
+import { entrance, exit } from './controllers/logs'
 import * as Passport from 'passport'
 config()
 
@@ -26,6 +26,7 @@ app.get('/', (req, res) => {})
 
 app.post('/register', registerContorller())
 app.post('/login', loginController(), entrance())
+app.post('/logout', exit())
 
 app.get('/tasks', Passport.authenticate('jwt', { session: false }), tasksContorller())
 
