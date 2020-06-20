@@ -9,4 +9,3 @@ coverage
 .vscode
 *.pem
 
-id_rsa_priv.pem
