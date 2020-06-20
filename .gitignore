@@ -7,5 +7,6 @@ node_modules
 coverage
 .nyc_output
 .vscode
-id_rsa_priv.pem
+*.pem
 
+id_rsa_priv.pem
