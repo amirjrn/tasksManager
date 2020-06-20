@@ -6,6 +6,7 @@ import passportConfig from './config/passport'
 import loginController from './controllers/login'
 import registerContorller from './controllers/register'
 import tasksContorller from './controllers/tasks'
+import { entrance } from './controllers/logs'
 import * as Passport from 'passport'
 config()
 
@@ -24,7 +25,7 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {})
 
 app.post('/register', registerContorller())
-app.post('/login', loginController())
+app.post('/login', loginController(), entrance())
 
 app.get('/tasks', Passport.authenticate('jwt', { session: false }), tasksContorller())
 

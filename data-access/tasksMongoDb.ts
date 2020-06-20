@@ -1,6 +1,6 @@
 import { Db } from 'mongodb'
 import ITask from './../domains/interfaces/ITask'
-import ItasksMongoDb from './interfaces/ItasksMongoDb'
+import ItasksMongoDb from './interfaces/ItasksDb'
 // get the database as argument and keep it in closure
 export default function makeTasksMongoDb(makeDb: () => Promise<Db>): ItasksMongoDb {
   // save function will check if an object with same id already exist then update it if not insert new one
@@ -8,8 +8,8 @@ export default function makeTasksMongoDb(makeDb: () => Promise<Db>): ItasksMongo
     const db = await makeDb()
     // const updateResult = await db.collection('tasks').updateOne({ id: task.id }, { $set: task })
     // if (updateResult.result.n === 0) {
-      const insertResult = await db.collection('tasks').insertOne(task)
-      return insertResult.result.ok ? true : false
+    const insertResult = await db.collection('tasks').insertOne(task)
+    return insertResult.result.ok ? true : false
     // // }
     // return updateResult.result.ok ? true : false
   }

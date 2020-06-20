@@ -1,8 +1,8 @@
 import Task from '../domains/Task'
-import ItasksMongoDb from '../data-access/interfaces/ItasksMongoDb'
-import IusersMongoDb from '../data-access/interfaces/IusersMongoDb'
+import ItasksDb from '../data-access/interfaces/ItasksDb'
+import IusersDb from '../data-access/interfaces/IusersDb'
 import User from '../domains/User'
-export function makeTasksUseCases(tasksDb: ItasksMongoDb, usersDb: IusersMongoDb) {
+export default function makeTasksUseCases(tasksDb: ItasksDb, usersDb: IusersDb) {
   const addTask = async ({ userId, taskName, taskDesc }): Promise<boolean> => {
     const task = new Task({ taskName, taskDesc })
     const userData = await usersDb.findOneById(userId)

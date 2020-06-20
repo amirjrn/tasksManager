@@ -1,15 +1,13 @@
 import { Db } from 'mongodb'
 import IUser from './../domains/interfaces/IUser'
-import IusersMongoDb from './interfaces/IusersMongoDb'
+import IusersDb from './interfaces/IusersDb'
 import { ObjectId } from 'mongodb'
 // get the database as argument and keep it in closure
-export default function makeTasksMongoDb(makeDb: () => Promise<Db>): IusersMongoDb {
+export default function makeTasksMongoDb(makeDb: () => Promise<Db>): IusersDb {
   // save function will check if an object with same id already exist then update it if not insert new one
   async function save(user: IUser) {
     const db = await makeDb()
-    const updateResult = await db
-      .collection('users')
-      .updateOne({ _id: new ObjectId(user.id) }, { $set: user })
+    const updateResult = await db.collection('users').updateOne({ _id: new ObjectId(user.id) }, { $set: user })
     if (updateResult.result.n === 0) {
       const insertResult = await db.collection('users').insertOne(user)
       return insertResult.result.ok ? true : false

@@ -1,10 +1,10 @@
 import User from '../domains/User'
 import IUser from './../domains/interfaces/IUser'
 import IusersUseCases from './interfaces/IusersUseCases'
-import IusersMongodb from '../data-access/interfaces/IusersMongoDb'
-export default function (db: IusersMongodb): IusersUseCases {
+import IusersDb from '../data-access/interfaces/IusersDb'
+export default function (db: IusersDb): IusersUseCases {
   const addUser = async ({ username, hash, salt }: IUser): Promise<boolean> => {
-    const user = new User({ _username :username, _hash:hash, _salt:salt })
+    const user = new User({ _username: username, _hash: hash, _salt: salt })
     return await db.save(user)
   }
 

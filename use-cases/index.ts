@@ -1,11 +1,11 @@
-import { tasksDb, usersDb } from './../data-access/index'
+import { tasksDb, usersDb, logsDb } from './../data-access/index'
 
-import { makeTasksUseCases } from './tasks'
+import makeTasksUseCases from './tasks'
 import makeUserUseCases from './users'
+import makeLogsUseCases from './logs'
 
 const tasksUseCases = makeTasksUseCases(tasksDb, usersDb)
 const userUseCases = makeUserUseCases(usersDb)
+const logsUseCases = makeLogsUseCases(logsDb)
 
-export { tasksUseCases, userUseCases }
-
-// tasksUseCases.addTask({ userId: '5eec86cee7b3427a5bf51bb6', taskName: 'hey', taskDesc: 'there' })
+export { tasksUseCases, userUseCases, logsUseCases }
