@@ -9,7 +9,7 @@ export default function makeTasksMongoDb(makeDb: () => Promise<Db>): IusersMongo
     const db = await makeDb()
     const updateResult = await db
       .collection('users')
-      .updateOne({ _id: new ObjectId(user._id) }, { $set: user })
+      .updateOne({ _id: new ObjectId(user.id) }, { $set: user })
     if (updateResult.result.n === 0) {
       const insertResult = await db.collection('users').insertOne(user)
       return insertResult.result.ok ? true : false

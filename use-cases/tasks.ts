@@ -5,8 +5,10 @@ import User from '../domains/User'
 export function makeTasksUseCases(tasksDb: ItasksMongoDb, usersDb: IusersMongoDb) {
   const addTask = async ({ userId, taskName, taskDesc }): Promise<boolean> => {
     const task = new Task({ taskName, taskDesc })
-    const user = await usersDb.findOneById(userId)
-    await usersDb.save(new User(user).addTask(task))
+    const userData = await usersDb.findOneById(userId)
+    const user = new User(userData)
+    user.addTask(task)
+    await usersDb.save(user)
     return await tasksDb.save(task)
   }
   return Object.freeze({

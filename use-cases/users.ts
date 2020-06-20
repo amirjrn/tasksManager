@@ -4,7 +4,7 @@ import IusersUseCases from './interfaces/IusersUseCases'
 import IusersMongodb from '../data-access/interfaces/IusersMongoDb'
 export default function (db: IusersMongodb): IusersUseCases {
   const addUser = async ({ username, hash, salt }: IUser): Promise<boolean> => {
-    const user = new User({ username, hash, salt })
+    const user = new User({ _username :username, _hash:hash, _salt:salt })
     return await db.save(user)
   }
 

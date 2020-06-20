@@ -6,12 +6,12 @@ export default function makeTasksMongoDb(makeDb: () => Promise<Db>): ItasksMongo
   // save function will check if an object with same id already exist then update it if not insert new one
   async function save(task: ITask) {
     const db = await makeDb()
-    const updateResult = await db.collection('tasks').updateOne({ id: task.id }, { $set: task })
-    if (updateResult.result.n === 0) {
+    // const updateResult = await db.collection('tasks').updateOne({ id: task.id }, { $set: task })
+    // if (updateResult.result.n === 0) {
       const insertResult = await db.collection('tasks').insertOne(task)
       return insertResult.result.ok ? true : false
-    }
-    return updateResult.result.ok ? true : false
+    // // }
+    // return updateResult.result.ok ? true : false
   }
 
   // findAll function will find all tasks and return it as an array

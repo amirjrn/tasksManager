@@ -21,14 +21,14 @@ export default class User implements IUser {
   get tasks(): ITask[] {
     return this._tasks
   }
-  constructor({ id = null, username, hash, salt, tasks = [] }) {
-    this._id = id
-    this._username = username
-    this._hash = hash
-    this._salt = salt
-    this._tasks = tasks
+  constructor({ _id = null, _username, _hash, _salt, _tasks = [] }) {
+    this._id = _id
+    this._username = _username
+    this._hash = _hash
+    this._salt = _salt
+    this._tasks = _tasks
   }
   addTask(task) {
-    this._tasks.concat(task)
+    this._tasks.push(task)
   }
 }
