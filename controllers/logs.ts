@@ -15,6 +15,6 @@ export function exit() {
     const date = Date.now()
     const action = 'خروج'
     await logsUseCases.addLog({ userId: req.body.username, date, action })
-    res.status().json({ message: 'با موفقیت خارج شدید' })
+    res.status(201).json({ message: 'با موفقیت خارج شدید' })
   }
 }

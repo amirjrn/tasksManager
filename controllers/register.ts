@@ -6,6 +6,6 @@ export default function () {
     const salt = saltHash.salt
     const hash = saltHash.hash
     const addUserResult = await userUseCases.addUser({ username: req.body.username, salt, hash })
-    res.json({ success: addUserResult })
+    res.status(201).json({ success: addUserResult })
   }
 }
