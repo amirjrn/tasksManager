@@ -21,7 +21,7 @@ export default class User implements IUser {
   get tasks(): ITask[] {
     return this._tasks
   }
-  constructor({ _id = null, _username, _hash, _salt, _tasks = [] }) {
+  constructor({ _id = null, _username, _hash, _salt, _tasks = {} }) {
     this._id = _id
     this._username = _username
     this._hash = _hash
@@ -29,6 +29,8 @@ export default class User implements IUser {
     this._tasks = _tasks
   }
   addTask(task) {
-    this._tasks.push(task)
+    var date = new Date()
+    const dateFull = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+    this._tasks[dateFull].push(task)
   }
 }

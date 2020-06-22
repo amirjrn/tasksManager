@@ -3,5 +3,6 @@ export default interface ITask {
   name: string
   desc: string
   done: boolean
+  date: string
   markDone: () => void
 }

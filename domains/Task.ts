@@ -19,12 +19,22 @@ export default class Task implements ITask {
   get done(): boolean {
     return this._done
   }
-
-  constructor({ id = undefined, taskName = undefined, taskDesc = undefined, done = false } = {}) {
+  private _date: string
+  get date(): string {
+    return this._date
+  }
+  constructor({
+    id = undefined,
+    taskName = undefined,
+    taskDesc = undefined,
+    done = false,
+    _date = new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate(),
+  } = {}) {
     this._id = id
     this._name = taskName
     this._desc = taskDesc
     this._done = done
+    this._date = _date
   }
 
   markDone() {

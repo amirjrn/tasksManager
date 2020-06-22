@@ -25,7 +25,9 @@ app.use(Passport.initialize())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {})
+app.get('/', (req, res) => {
+  res.send('index.html')
+})
 
 app.post('/register', registerContorller())
 app.post('/login', loginController(), entrance())

@@ -5,7 +5,8 @@ export default function () {
   return async function (req: Request, res: Response, next) {
     const user = await userUseCases.findUserByName(req.body.username)
     if (!user) {
-      return res.status(401).json({ success: false, msg: 'این نام پیدا نشد. لطفا دوباره امتحان کنید' })
+      res.status(401)
+      return res.send({ success: false, msg: 'این نام پیدا نشد. لطفا دوباره امتحان کنید' })
     }
     const isValid = validPassword(req.body.password, user._hash, user._salt)
     if (!isValid) {
