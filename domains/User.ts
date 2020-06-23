@@ -1,5 +1,7 @@
 import IUser from './interfaces/IUser'
 import ITask from './interfaces/ITask'
+import { Timestamp } from 'mongodb'
+import task from '../controllers/task'
 export default class User implements IUser {
   private _id: string
   get id(): string {
@@ -31,6 +33,13 @@ export default class User implements IUser {
   addTask(task) {
     var date = new Date()
     const dateFull = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
+    if (!this._tasks[dateFull]) {
+      this._tasks[dateFull] = []
+    }
     this._tasks[dateFull].push(task)
+  }
+  doTask(taskId) {
+    const task = this._tasks.map((tasks) => tasks.find((task) => (task._id = taskId)))
+    task._done = true
   }
 }

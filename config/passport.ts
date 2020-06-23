@@ -5,8 +5,15 @@ import { userUseCases } from './../use-cases/index'
 const pathToKey = path.join(__dirname, '..', 'id_rsa_pub.pem')
 const PUB_KEY = fs.readFileSync(pathToKey, 'utf8')
 
+let cookieExtractor = function (req) {
+  var token = null
+  if (req && req.cookies) token = req.cookies['token']
+  console.log(token)
+  return token
+}
+
 const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: cookieExtractor,
   secretOrKey: PUB_KEY,
   algorithms: ['RS256'],
 }
