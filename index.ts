@@ -8,6 +8,7 @@ import passportConfig from './config/passport'
 import loginController from './controllers/login'
 import registerContorller from './controllers/register'
 import tasksContorller from './controllers/tasks'
+import dotaskController from './controllers/dotask'
 import { entrance, exit } from './controllers/logs'
 import * as Passport from 'passport'
 config()
@@ -30,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post('/task', taskController())
-app.post('/dotask')
+app.post('/dotask', Passport.authenticate('jwt', { session: false }), dotaskController())
 app.get('/', (req, res) => {
   res.send('index.html')
 })

@@ -12,11 +12,11 @@ export default function makeTasksUseCases(tasksDb: ItasksDb, usersDb: IusersDb) 
     await usersDb.save(user)
     return await tasksDb.save(task)
   }
-  const doTask = async ({ userId, taskId }) => {
+  const doTask = async ({ userId, taskId }): Promise<boolean> => {
     const userData = await usersDb.findOneById(userId)
     const user = new User(userData)
     user.doTask(taskId)
-    await usersDb.save(user)
+    return await usersDb.save(user)
   }
   return Object.freeze({
     addTask,

@@ -39,7 +39,9 @@ export default class User implements IUser {
     this._tasks[dateFull].push(task)
   }
   doTask(taskId) {
-    const task = this._tasks.map((tasks) => tasks.find((task) => (task._id = taskId)))
+    const tasksByDate = Object.values(this._tasks).map((task) => task)
+    const tasks = tasksByDate.flat()
+    const task = tasks.find((task) => task._id === taskId)
     task._done = true
   }
 }
