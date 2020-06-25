@@ -18,8 +18,14 @@ export default function makeTasksUseCases(tasksDb: ItasksDb, usersDb: IusersDb) 
     user.doTask(taskId)
     return await usersDb.save(user)
   }
+  const getTasks = async ({ userId }) => {
+    const user = await usersDb.findOneById(userId)
+    const tasks = user._tasks
+    return tasks
+  }
   return Object.freeze({
     addTask,
     doTask,
+    getTasks,
   })
 }

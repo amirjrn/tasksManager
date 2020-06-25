@@ -8,7 +8,6 @@ const PUB_KEY = fs.readFileSync(pathToKey, 'utf8')
 let cookieExtractor = function (req) {
   var token = null
   if (req && req.cookies) token = req.cookies['token']
-  console.log(token)
   return token
 }
 
