@@ -24,7 +24,6 @@ export function exit() {
   return async function (req: Request, res: Response, next) {
     var currentdate = new Date()
     var datetime =
-      'Last Sync: ' +
       currentdate.getDay() +
       '/' +
       currentdate.getMonth() +
