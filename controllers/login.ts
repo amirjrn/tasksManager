@@ -13,7 +13,6 @@ export default function () {
       res.status(401).json({ success: false, msg: 'پسورد وارد شده اشتباه است . لطفا دوباره امتحان کنید' })
     }
     const tokenObject = issueJWT(user)
-    res.setHeader('Authorization', tokenObject.token)
     res.cookie('token', tokenObject.token, {
       maxAge: 86_400_000,
       httpOnly: true,

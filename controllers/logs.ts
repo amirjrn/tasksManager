@@ -5,7 +5,7 @@ export function entrance() {
   return async function (req: Request, res: Response, next) {
     var currentdate = new Date()
     var datetime =
-      currentdate.getDay() +
+      currentdate.getDate() +
       '/' +
       currentdate.getMonth() +
       '/' +
@@ -24,7 +24,7 @@ export function exit() {
   return async function (req: Request, res: Response, next) {
     var currentdate = new Date()
     var datetime =
-      currentdate.getDay() +
+      currentdate.getDate() +
       '/' +
       currentdate.getMonth() +
       '/' +

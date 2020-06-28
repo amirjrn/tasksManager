@@ -6,6 +6,7 @@ import { config } from 'dotenv'
 import * as cors from 'cors'
 import passportConfig from './config/passport'
 import loginController from './controllers/login'
+import logoutController from './controllers/logout'
 import registerContorller from './controllers/register'
 import tasksContorller from './controllers/tasks'
 import dotaskController from './controllers/dotask'
@@ -38,7 +39,7 @@ app.get('/', (req, res) => {
 
 app.post('/register', registerContorller())
 app.post('/login', loginController(), entrance())
-app.post('/logout', exit())
+app.post('/logout', Passport.authenticate('jwt', { session: false }), logoutController(), exit())
 
 app.get('/tasks', Passport.authenticate('jwt', { session: false }), tasksContorller())
 
